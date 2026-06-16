@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS orders (
+
     id INTEGER PRIMARY KEY AUTOINCREMENT,
 
     user_id INTEGER,
@@ -102,6 +103,10 @@ CREATE TABLE IF NOT EXISTS orders (
     total_price INTEGER DEFAULT 0,
 
     order_status TEXT DEFAULT 'pending',
+
+    payment_status TEXT DEFAULT 'unpaid',
+
+    payment_token TEXT,
 
     payment_method TEXT,
 
