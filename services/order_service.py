@@ -5,10 +5,6 @@ from utils.token_generator import (
     generate_payment_token
 )
 
-from services.qr_service import (
-    generate_qr
-)
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DB_PATH = (
@@ -124,15 +120,8 @@ def checkout(
         )
     )
 
-    qr_path = (
-        generate_qr(
-            order_number
-        )
-    )
-
     return {
         "order_id": order_id,
         "order_number": order_number,
         "payment_token": payment_token,
-        "qr_path": qr_path
     }
