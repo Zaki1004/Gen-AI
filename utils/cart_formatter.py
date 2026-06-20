@@ -9,13 +9,24 @@ def format_cart(cart, total):
     for item in cart:
 
         answer += (
-            f"- {item['name']} "
+            f"• {item['name']} "
             f"x{item['quantity']}\n"
         )
 
+        answer += (
+            f"  Rp{item['subtotal']:,}"
+            .replace(",", ".")
+            + "\n\n"
+        )
+
     answer += (
-        f"\n💰 Total: "
-        f"Rp{total:,}".replace(",", ".")
+        "--------------------\n"
+    )
+
+    answer += (
+        f"💰 Total: "
+        f"Rp{total:,}"
+        .replace(",", ".")
     )
 
     return answer

@@ -1,16 +1,26 @@
 import streamlit as st
 
-from services.llm_service import (
-    generate_response
+from services.chat_router import (
+    route_message
 )
 
-from services.chat_checkout_service import (
-    create_demo_checkout
+from services.order_service import (
+    checkout
 )
 
 from services.payment_service import (
     get_order,
     pay_order
+)
+
+from services.cart_session_service import (
+    init_cart,
+    get_cart,
+    clear_cart
+)
+
+from services.order_history_service import (
+    get_recent_orders
 )
 
 st.set_page_config(
@@ -22,6 +32,9 @@ st.set_page_config(
 st.title("☕ CoffeeBot")
 st.caption("AI Coffee Shop Assistant")
 
+init_cart()
+
+
 # ==========================
 # Checkout Demo
 # ==========================
@@ -29,24 +42,57 @@ st.caption("AI Coffee Shop Assistant")
 st.divider()
 
 st.subheader(
-    "🛒 Demo Checkout"
+    "🛒 Checkout"
 )
 
-if st.button(
-    "Checkout Demo"
-):
+cart, total = get_cart()
 
-    result = create_demo_checkout()
-
-    st.session_state.payment_token = (
-        result["payment_token"]
-    )
+if cart:
 
     st.success(
-        "Order berhasil dibuat"
+        f"🛒 {len(cart)} item dalam keranjang"
     )
 
-    st.rerun()
+    st.write(
+        "Isi Keranjang:"
+    )
+
+    for item in cart:
+
+        st.write(
+            f"• {item['name']} "
+            f"x{item['quantity']}"
+        )
+
+    st.metric(
+        "Total",
+        f"Rp{total:,}"
+    )
+
+    if st.button(
+        "Checkout Keranjang"
+    ):
+
+        result = checkout(
+            cart,
+            total
+        )
+
+        st.session_state.payment_token = (
+            result["payment_token"]
+        )
+
+        clear_cart()
+
+        st.success(
+            "Order berhasil dibuat"
+        )
+
+else:
+
+    st.info(
+        "Keranjang masih kosong"
+    )
 
 # ==========================
 # Payment Panel
@@ -105,6 +151,25 @@ if "payment_token" in st.session_state:
 
                 st.rerun()
 
+# ORDER HISTORY
+
+st.divider()
+
+st.subheader(
+    "📜 Riwayat Order"
+)
+
+orders = get_recent_orders()
+
+for order in orders:
+
+    st.write(
+        f"Order #{order[0]}"
+        f" | Rp{order[1]:,}"
+        f" | {order[2]}"
+    )              
+
+
 # ==========================
 # Chatbot
 # ==========================
@@ -140,7 +205,7 @@ if prompt:
     ):
         st.markdown(prompt)
 
-    answer = generate_response(
+    answer = route_message(
         st.session_state.messages
     )
 
@@ -155,3 +220,5 @@ if prompt:
         "assistant"
     ):
         st.markdown(answer)
+
+    st.rerun()
