@@ -2,7 +2,10 @@ def format_cart(cart, total):
 
     if not cart:
 
-        return "Keranjang masih kosong."
+        return (
+        "🛒 Keranjang Anda\n\n"
+        "Tidak ada pesanan."
+    )
 
     answer = "🛒 Keranjang Anda\n\n"
 

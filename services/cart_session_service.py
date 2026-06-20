@@ -77,8 +77,8 @@ def merge_cart(
                     new_item["quantity"]
                 )
 
-                current_item["subtotal"] += (
-                    new_item["subtotal"]
+                current_item["subtotal"] = (
+                    current_item["quantity"] * current_item["price"]
                 )
 
                 found = True
@@ -99,7 +99,7 @@ def merge_cart(
         current_total +
         new_total
     )
-    
+
 
 def remove_item(menu_name):
 

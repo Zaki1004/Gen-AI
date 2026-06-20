@@ -15,6 +15,16 @@ def detect_intent(question):
     if any(
         word in question
         for word in [
+            "kosongkan keranjang",
+            "clear cart",
+            "hapus semua"
+        ]
+    ):
+        return "clear_cart"
+
+    if any(
+        word in question
+        for word in [
             "hapus",
             "remove",
             "batalkan"
@@ -30,5 +40,20 @@ def detect_intent(question):
         ]
     ):
         return "add_item"
+
+    if any(
+        word in question
+        for word in [
+            "keranjang",
+            "cart",
+            "lihat pesanan",
+            "lihat keranjang",
+            "isi keranjang",
+            "lihat pesanan saya",
+            "lihat order",
+            "lihat order saya",
+        ]
+    ):
+        return "view_cart"
 
     return "normal"
