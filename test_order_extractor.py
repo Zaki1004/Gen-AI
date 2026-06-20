@@ -3,7 +3,7 @@ from utils.order_extractor import (
 )
 
 question = (
-    "Saya pesan 2 caramel latte, 1 croissant, dan 1 cappuccino."
+    "Saya mau dua belas caramel latte dan empat espresso"
 )
 
 print(

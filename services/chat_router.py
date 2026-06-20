@@ -29,7 +29,8 @@ from utils.remove_extractor import (
 from services.cart_session_service import (
     merge_cart,
     remove_item,
-    get_cart
+    get_cart,
+    clear_cart
 )
 
 
@@ -39,9 +40,32 @@ def route_message(messages):
         messages[-1]["content"]
     )
 
+    print("QUESTION:", question)
+    print(
+        "IS ORDER:",
+        is_order_request(question)
+    )
+
     intent = detect_intent(
     question
     )
+
+    if intent == "clear_cart":
+
+        clear_cart()
+
+        return (
+            "🛒 Keranjang berhasil dikosongkan"
+        )
+
+    if intent == "view_cart":
+
+        cart, total = get_cart()
+
+        return format_cart(
+            cart,
+            total
+        )
 
     if intent == "remove_item":
 
@@ -77,7 +101,6 @@ def route_message(messages):
         cart, total = build_cart(
             orders
         )
-
 
         merge_cart(
             cart,

@@ -7,7 +7,16 @@ def is_order_request(question):
         "order",
         "beli",
         "tambah",
-        "tambahkan"
+        "tambahkan",
+        "mau",
+        "ingin",
+        "pesanan",
+        "pesen",
+        "tolong",
+        "tambahkan ke keranjang",
+        "tambahkan ke cart",
+        "masukkan ke keranjang",
+        "masukkan ke cart",
     ]
 
     return any(
