@@ -7,34 +7,40 @@ from rag.document_cleaner import (
 )
 
 from rag.chunker import (
-    create_chunks
+    create_chunks,
+    CHUNK_SIZE,
+    CHUNK_OVERLAP
 )
 
 docs = load_all_pdfs()
 
-clean_docs = remove_empty_pages(
+docs = remove_empty_pages(
     docs
 )
 
 chunks = create_chunks(
-    clean_docs
+    docs
 )
 
-print(
-    f"Pages: {len(clean_docs)}"
-)
+print(f"Pages          : {len(docs)}")
 
-print(
-    f"Chunks: {len(chunks)}"
-)
+print(f"Chunks         : {len(chunks)}")
 
-print("\n===== CHUNK SAMPLE =====\n")
+print(f"Chunk Size     : {CHUNK_SIZE}")
+
+print(f"Chunk Overlap  : {CHUNK_OVERLAP}")
+
+print()
+
+print("===== SAMPLE CHUNK =====\n")
 
 print(
     chunks[0].page_content[:1000]
 )
 
-print("\n===== METADATA =====\n")
+print()
+
+print("===== METADATA =====")
 
 print(
     chunks[0].metadata
