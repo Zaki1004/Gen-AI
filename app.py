@@ -1,7 +1,7 @@
 import streamlit as st
 
-from services.chat_router import (
-    route_message
+from agents.coffee_agent import (
+    run_agent
 )
 
 from services.order_service import (
@@ -205,8 +205,8 @@ if prompt:
     ):
         st.markdown(prompt)
 
-    answer = route_message(
-        st.session_state.messages
+    answer = run_agent(
+        prompt
     )
 
     st.session_state.messages.append(
