@@ -6,6 +6,10 @@ from rag.vector_store import (
     load_faiss_index
 )
 
+from rag.query_expansion import (
+    expand_query
+)
+
 MODEL_NAME = (
     "all-MiniLM-L6-v2"
 )
@@ -26,9 +30,13 @@ def retrieve_context(
         load_faiss_index()
     )
 
+    expanded_query = expand_query(
+        question
+    )
+
     query_embedding = (
         embedding_model.encode(
-            [question]
+            [expanded_query]
         )
     )
 
@@ -43,30 +51,19 @@ def retrieve_context(
 
     retrieved_chunks = []
 
-    for i, idx in enumerate(indices[0]):
+    for distance, idx in zip(
+        distances[0],
+        indices[0]
+    ):
+
+        doc = chunks[idx]
+
+        doc.metadata["distance"] = float(
+            distance
+        )
 
         retrieved_chunks.append(
-            {
-                "content":
-                    chunks[idx].page_content,
-
-                "source":
-                    chunks[idx].metadata.get(
-                        "source",
-                        "Unknown"
-                    ),
-
-                "page":
-                    chunks[idx].metadata.get(
-                        "page",
-                        0
-                    ),
-
-                "distance":
-                    float(
-                        distances[0][i]
-                    )
-            }
+            doc
         )
 
     return retrieved_chunks
