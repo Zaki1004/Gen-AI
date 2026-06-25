@@ -41,14 +41,6 @@ def recommend_by_preferences(preferences):
         """
 
 
-    if "caffeine_level" in preferences:
-
-        query += f"""
-        AND caffeine_level =
-        '{preferences["caffeine_level"]}'
-        """
-
-
     if "max_price" in preferences:
 
         query += f"""
