@@ -36,25 +36,13 @@ def ask_rag(
     question
 ):
 
-    retrieved_docs = (
-        retrieve_context(
-            question
-        )
+    retrieved_docs = retrieve_context(
+        question
     )
 
     context = "\n\n".join(
-        [
-            doc["content"]
-            for doc in retrieved_docs
-        ]
-    )
-
-    print(
-        "\n===== CONTEXT =====\n"
-    )
-
-    print(
-        context[:5000]
+        doc.page_content
+        for doc in retrieved_docs
     )
 
     prompt = f"""
@@ -67,30 +55,19 @@ Question:
 {question}
 """
 
-    response = (
-        client.chat.completions.create(
-            model=
-            "llama-3.3-70b-versatile",
-
-            temperature=0,
-
-            messages=[
-                {
-                    "role":
-                    "system",
-
-                    "content":
-                    RAG_SYSTEM_PROMPT
-                },
-                {
-                    "role":
-                    "user",
-
-                    "content":
-                    prompt
-                }
-            ]
-        )
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        temperature=0,
+        messages=[
+            {
+                "role": "system",
+                "content": RAG_SYSTEM_PROMPT
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
     )
 
     return (

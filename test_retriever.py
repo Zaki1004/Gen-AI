@@ -2,34 +2,32 @@ from rag.retriever import (
     retrieve_context
 )
 
+question = "Apa itu roasting kopi?"
+
 results = retrieve_context(
-    "Apa itu roasting kopi?"
+    question
 )
 
-print(
-    f"Total Retrieved: {len(results)}"
-)
+print(f"Total Retrieved: {len(results)}")
 
 for i, doc in enumerate(results):
 
+    print(f"\n===== CHUNK {i+1} =====")
+
     print(
-        f"\n===== CHUNK {i+1} ====="
+        f"Source: {doc.metadata['source']}"
     )
 
     print(
-        f"Source: {doc['source']}"
+        f"Page: {doc.metadata['page']}"
     )
 
     print(
-        f"Page: {doc['page']}"
-    )
-
-    print(
-        f"Distance: {doc['distance']}"
+        f"Distance: {doc.metadata['distance']}"
     )
 
     print()
 
     print(
-        doc["content"][:500]
+        doc.page_content[:500]
     )
