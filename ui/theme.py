@@ -55,6 +55,8 @@ Metric
 
     border:1px solid #E0D7CF;
 
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+
 }
 
 
@@ -65,6 +67,8 @@ Chat Input
 [data-testid="stChatInput"]{
 
     border-radius:16px;
+
+    border:1px solid #DDD4CB;
 
 }
 
@@ -85,11 +89,15 @@ Button
 
     font-weight:600;
 
+    transition:0.2s ease;
+
 }
 
 .stButton>button:hover{
 
     background:#5A3E2B;
+
+    transform:translateY(-1px);
 
 }
 
@@ -104,14 +112,101 @@ Popover
 
 }
 
-
 /* =========================================
-Sidebar
+Chat Bubble
 ========================================= */
 
-section[data-testid="stSidebar"]{
+[data-testid="stChatMessage"]{
 
-    background:#EFE8E1;
+    margin-bottom:18px;
+
+}
+
+[data-testid="stChatMessageContent"]{
+
+    padding:14px 18px;
+
+}
+
+
+/* =========================================
+Markdown
+========================================= */
+
+[data-testid="stMarkdownContainer"] p{
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================
+Divider
+========================================= */
+
+hr{
+
+    border-color:#DDD4CB;
+
+    margin-top:16px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================================
+Caption
+========================================= */
+
+[data-testid="stCaptionContainer"]{
+
+    color:#8B7D70;
+
+    margin-top:-6px;
+
+    margin-bottom:18px;
+
+}
+
+
+/* =========================================
+Table
+========================================= */
+
+table{
+
+    border-radius:10px;
+
+}
+
+
+/* =========================================
+Code Block
+========================================= */
+
+pre{
+
+    border-radius:12px;
+
+}
+
+
+/* =========================================
+Scrollbar
+========================================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#C8A27C;
+
+    border-radius:10px;
 
 }
 

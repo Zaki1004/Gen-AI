@@ -78,7 +78,7 @@ def render_chat():
     ):
 
         with st.spinner(
-            "CoffeeBot sedang berpikir..."
+            "CoffeeBot sedang meracik jawaban..."
         ):
 
             answer = run_agent(
