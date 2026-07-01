@@ -32,7 +32,8 @@ def render_header():
     # ==========================
 
     left, right = st.columns(
-        [8, 2]
+        [7, 3],
+        vertical_alignment="top"
     )
 
     with left:
@@ -48,7 +49,8 @@ def render_header():
     with right:
 
         history_col, cart_col = st.columns(
-            2
+            [1,1],
+            gap="small",
         )
 
         with history_col:
