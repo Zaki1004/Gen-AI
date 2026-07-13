@@ -18,7 +18,8 @@ from services.cart_session_service import (
     merge_cart,
     get_cart,
     clear_cart,
-    remove_item
+    remove_item,
+    update_cart_quantity
 )
 
 from services.order_service import (
@@ -130,6 +131,35 @@ def order_tool_node(question):
     merge_cart(
         cart,
         total
+    )
+
+    cart, total = get_cart()
+
+    return format_cart(
+        cart,
+        total
+    )
+
+    # UPDATE QUANTITY
+
+    if intent == "update_quantity":
+
+    result = extract_remove_item(
+        question
+    )
+
+    if not result:
+
+        return (
+            "Menu tidak ditemukan."
+        )
+
+    update_cart_quantity(
+
+        result["menu"],
+
+        result["quantity"]
+
     )
 
     cart, total = get_cart()

@@ -58,7 +58,8 @@ def router_node(
             "view_cart",
             "remove_item",
             "clear_cart",
-            "checkout"
+            "checkout",
+            "update_quantity"
         ]
     ):
 

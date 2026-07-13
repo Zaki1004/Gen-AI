@@ -25,10 +25,19 @@ def detect_intent(question):
     if any(
         word in question
         for word in [
+            "kurangi",
+            "kurangin",
+            "reduce"
+        ]
+    ):
+        return "update_quantity"
+
+    if any(
+        word in question
+        for word in [
             "hapus",
             "remove",
-            "batalkan",
-            "kurangi"
+            "batalkan"
         ]
     ):
         return "remove_item"

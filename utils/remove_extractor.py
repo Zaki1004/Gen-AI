@@ -6,10 +6,11 @@ def extract_remove_item(question):
     question = question.lower()
 
     pattern = (
-        r'(hapus|remove|batalkan)'
-        r'\s+'
-        r'(?:\d+\s+)?'
-        r'([a-zA-Z ]+)'
+        r"(hapus|remove|batalkan|kurangi)"
+        r"\s*"
+        r"(\d+)?"
+        r"\s*"
+        r"([a-zA-Z ]+)"
     )
 
     match = re.search(
@@ -18,9 +19,21 @@ def extract_remove_item(question):
     )
 
     if not match:
+
         return None
 
-    return (
-        match.group(2)
-        .strip()
+    quantity = (
+        int(match.group(2))
+        if match.group(2)
+        else None
     )
+
+    return {
+
+        "menu":
+        match.group(3).strip(),
+
+        "quantity":
+        quantity
+
+    }

@@ -135,3 +135,59 @@ def remove_item(menu_name):
     st.session_state.cart_total = (
         total
     )
+
+def update_cart_quantity(
+    menu_name,
+    quantity
+):
+
+    current_cart = (
+        st.session_state.get(
+            "cart",
+            []
+        )
+    )
+
+    total = 0
+
+    new_cart = []
+
+    for item in current_cart:
+
+        if (
+            item["name"].lower()
+            ==
+            menu_name.lower()
+        ):
+
+            item["quantity"] -= quantity
+
+            if item["quantity"] > 0:
+
+                item["subtotal"] = (
+                    item["quantity"]
+                    *
+                    item["price"]
+                )
+
+                new_cart.append(
+                    item
+                )
+
+                total += item["subtotal"]
+
+        else:
+
+            new_cart.append(
+                item
+            )
+
+            total += item["subtotal"]
+
+    st.session_state.cart = (
+        new_cart
+    )
+
+    st.session_state.cart_total = (
+        total
+    )
