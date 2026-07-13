@@ -77,8 +77,6 @@ Subtotal : **Rp{item['price'] * item['quantity']:,}**
                     "Silakan lanjutkan ke proses pembayaran."
                 )
 
-                st.rerun()
-
         else:
 
             st.markdown("## 🛒")

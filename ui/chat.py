@@ -116,5 +116,3 @@ def render_chat():
         }
 
     )
-
-    st.rerun()
