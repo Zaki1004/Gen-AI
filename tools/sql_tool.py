@@ -7,9 +7,19 @@ import os
 
 load_dotenv()
 
-client = Groq(
-    api_key=os.getenv("GROQ_API_KEY")
-)
+
+def get_client():
+
+    api_key = os.getenv("GROQ_API_KEY")
+
+    if not api_key:
+        raise ValueError(
+            "GROQ_API_KEY tidak ditemukan."
+        )
+
+    return Groq(
+        api_key=api_key
+    )
 
 PROMPT_TEMPLATE = """
 Anda adalah SQL Generator untuk Coffee Shop.
@@ -166,6 +176,8 @@ def generate_sql(question):
         question=question
     )
 
+    client = get_client()
+
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         temperature=0,
@@ -214,6 +226,8 @@ Rules:
 - Gunakan format poin.
 
 """
+
+    client = get_client()
 
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
