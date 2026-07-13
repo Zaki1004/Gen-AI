@@ -1,15 +1,10 @@
-from sentence_transformers import (
-    SentenceTransformer
+from config.embedding import (
+    get_embedding_model
 )
-
-from config.ai_resources import embedding_model
 
 embedding_model = (
-    SentenceTransformer(
-        MODEL_NAME
-    )
+    get_embedding_model()
 )
-
 
 def create_embeddings(
     chunks

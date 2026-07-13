@@ -1,18 +1,9 @@
-from groq import Groq
-from dotenv import load_dotenv
-
 from rag.retriever import (
     retrieve_context
 )
 
-import os
-
-load_dotenv()
-
-client = Groq(
-    api_key=os.getenv(
-        "GROQ_API_KEY"
-    )
+from config.ai_client import (
+    get_groq_client
 )
 
 RAG_SYSTEM_PROMPT = """
@@ -155,6 +146,8 @@ Prioritaskan context jika tersedia.
 def ask_rag(
     question
 ):
+
+    client = get_groq_client()
 
     retrieved_docs = retrieve_context(
         question

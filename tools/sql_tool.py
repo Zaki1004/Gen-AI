@@ -1,25 +1,19 @@
-from groq import Groq
-from dotenv import load_dotenv
 from database.db_service import execute_query
 from utils.query_normalizer import normalize_question
-
-import os
-
-load_dotenv()
-
+from config.ai_client import (
+    get_groq_client
+)
 
 def get_client():
 
-    api_key = os.getenv("GROQ_API_KEY")
+    client = get_groq_client()
 
-    if not api_key:
+    if not client:
         raise ValueError(
             "GROQ_API_KEY tidak ditemukan."
         )
 
-    return Groq(
-        api_key=api_key
-    )
+    return client
 
 PROMPT_TEMPLATE = """
 Anda adalah SQL Generator untuk Coffee Shop.
