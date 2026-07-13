@@ -76,7 +76,35 @@ def order_tool_node(question):
             )
 
         remove_item(
-            menu_name
+            menu_name["menu"]
+        )
+
+        cart, total = get_cart()
+
+        return format_cart(
+            cart,
+            total
+        )
+
+    # UPDATE QUANTITY
+
+    if intent == "update_quantity":
+
+        result = extract_remove_item(
+            question
+        )
+
+        if not result:
+
+            return (
+                "Menu tidak ditemukan."
+            )
+
+        update_cart_quantity(
+
+            result["menu"],
+            result["quantity"]
+
         )
 
         cart, total = get_cart()
@@ -131,35 +159,6 @@ def order_tool_node(question):
     merge_cart(
         cart,
         total
-    )
-
-    cart, total = get_cart()
-
-    return format_cart(
-        cart,
-        total
-    )
-
-    # UPDATE QUANTITY
-
-    if intent == "update_quantity":
-
-    result = extract_remove_item(
-        question
-    )
-
-    if not result:
-
-        return (
-            "Menu tidak ditemukan."
-        )
-
-    update_cart_quantity(
-
-        result["menu"],
-
-        result["quantity"]
-
     )
 
     cart, total = get_cart()
