@@ -1,49 +1,41 @@
 # ==================================================
-# CORE AI
+# Base Image
 # ==================================================
-groq==0.37.1
-langchain==1.3.9
-langchain-community==0.4.2
-langgraph==1.2.5
+FROM python:3.12-slim
 
 # ==================================================
-# FRONTEND
+# Python Environment
 # ==================================================
-streamlit==1.58.0
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # ==================================================
-# ENVIRONMENT
+# Working Directory
 # ==================================================
-python-dotenv==1.2.2
+WORKDIR /app
 
 # ==================================================
-# DATABASE
+# Copy Requirements
 # ==================================================
-pandas==3.0.3
+COPY requirements.txt .
 
 # ==================================================
-# VECTOR DATABASE & EMBEDDING
+# Install Dependencies
 # ==================================================
-faiss-cpu==1.14.3
-sentence-transformers==5.6.0
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # ==================================================
-# RAG
+# Copy Project
 # ==================================================
-langchain-text-splitters==1.1.2
+COPY . .
 
 # ==================================================
-# PDF PROCESSING
+# Streamlit Port
 # ==================================================
-PyMuPDF==1.27.2.3
+EXPOSE 8501
 
 # ==================================================
-# UTILITIES
+# Run CoffeeBot
 # ==================================================
-numpy==2.4.6
-requests==2.34.2
-
-# ==================================================
-# DEVELOPMENT
-# ==================================================
-watchdog==6.0.0
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
