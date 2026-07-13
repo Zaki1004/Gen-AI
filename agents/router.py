@@ -25,7 +25,7 @@ def router_node(
         question
     )
 
-    intet = detect_intent(
+    intent = detect_intent(
         question
     )
 
@@ -49,11 +49,12 @@ def router_node(
     if (
         (
             is_order_request(question)
-        and
-        len(orders) > 0
+            and
+            len(orders) > 0
         )
         or 
         intent in [
+            "add_item",
             "view_cart",
             "remove_item",
             "clear_cart",
