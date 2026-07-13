@@ -3,6 +3,8 @@ def is_order_request(question):
     question = question.lower()
 
     keywords = [
+
+        # Add Item
         "pesan",
         "order",
         "beli",
@@ -12,11 +14,25 @@ def is_order_request(question):
         "ingin",
         "pesanan",
         "pesen",
-        "tolong",
-        "tambahkan ke keranjang",
-        "tambahkan ke cart",
-        "masukkan ke keranjang",
-        "masukkan ke cart",
+
+        # Cart
+        "keranjang",
+        "cart",
+
+        # Remove
+        "hapus",
+        "remove",
+        "batalkan",
+        "kurangi",
+
+        # Checkout
+        "checkout",
+        "bayar",
+        "payment",
+
+        # Clear
+        "kosongkan",
+
     ]
 
     return any(

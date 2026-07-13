@@ -10,6 +10,7 @@ from utils.order_extractor import (
     extract_order
 )
 
+from utils.conversation_intent import detect_intent
 
 def router_node(
     state: CoffeeAgentState
@@ -21,6 +22,10 @@ def router_node(
     )
 
     orders = extract_order(
+        question
+    )
+
+    intet = detect_intent(
         question
     )
 
@@ -42,9 +47,18 @@ def router_node(
     )
 
     if (
-        is_order_request(question)
+        (
+            is_order_request(question)
         and
         len(orders) > 0
+        )
+        or 
+        intent in [
+            "view_cart",
+            "remove_item",
+            "clear_cart",
+            "checkout"
+        ]
     ):
 
         print(

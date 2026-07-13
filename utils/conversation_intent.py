@@ -27,7 +27,8 @@ def detect_intent(question):
         for word in [
             "hapus",
             "remove",
-            "batalkan"
+            "batalkan",
+            "kurangi"
         ]
     ):
         return "remove_item"
@@ -36,7 +37,14 @@ def detect_intent(question):
         word in question
         for word in [
             "tambah",
-            "tambahkan"
+            "tambahkan",
+            "pesan",
+            "order",
+            "beli",
+            "mau",
+            "ingin",
+            "pesanan",
+            "pesen"
         ]
     ):
         return "add_item"
