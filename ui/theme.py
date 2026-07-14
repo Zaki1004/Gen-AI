@@ -7,76 +7,114 @@ def apply_theme():
         """
 <style>
 
-/* ==========================================================
-GLOBAL
-========================================================== */
+/* =========================================
+Background
+========================================= */
 
-html,
-body,
-.stApp,
-[data-testid="stAppViewContainer"],
-[data-testid="stAppScrollToBottomContainer"],
-[data-testid="stMainBlockContainer"],
+.stApp{
 
-/* ==========================================================
-HEADER
-========================================================== */
-
-header,
-[data-testid="stHeader"]{
-
-    background: transparent !important;
-    backdrop-filter: blur(8px);
-
-    border-bottom: 1px solid rgba(150,150,150,.15);
+    background-color:#F8F5F2;
 
 }
 
-/* ==========================================================
-TEXT
-========================================================== */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6{
+/* =========================================
+Header
+========================================= */
 
-    color: inherit !important;
+h1{
+
+    color:#4E342E;
 
 }
 
-p,
-span,
-label,
-small,
-strong,
-li,
-div{
+h2{
 
-    color: inherit !important;
+    color:#4E342E;
 
 }
 
-[data-testid="stMarkdownContainer"],
-[data-testid="stMarkdownContainer"] *{
+h3{
 
-    color: inherit !important;
-
-}
-
-[data-testid="stCaptionContainer"],
-[data-testid="stCaptionContainer"] *{
-
-    color: inherit !important;
-    opacity:.85;
+    color:#5D4037;
 
 }
 
-/* ==========================================================
-CHAT
-========================================================== */
+
+/* =========================================
+Metric
+========================================= */
+
+[data-testid="stMetric"]{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:10px;
+
+    border:1px solid #E0D7CF;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+
+}
+
+
+/* =========================================
+Chat Input
+========================================= */
+
+[data-testid="stChatInput"]{
+
+    border-radius:16px;
+
+    border:1px solid #DDD4CB;
+
+}
+
+
+/* =========================================
+Button
+========================================= */
+
+.stButton>button{
+
+    background:#6F4E37;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:0.2s ease;
+
+}
+
+.stButton>button:hover{
+
+    background:#5A3E2B;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* =========================================
+Popover
+========================================= */
+
+[data-testid="stPopover"] button{
+
+    border-radius:12px;
+
+}
+
+/* =========================================
+Chat Bubble
+========================================= */
 
 [data-testid="stChatMessage"]{
 
@@ -86,135 +124,66 @@ CHAT
 
 [data-testid="stChatMessageContent"]{
 
-    background: var(--secondary-background-color,#FFFFFF) !important;
-
-    border-radius:18px;
-
-    border:1px solid rgba(160,160,160,.18);
-
-    padding:16px;
-
-    color:inherit !important;
+    padding:14px 18px;
 
 }
 
-/* ==========================================================
-CHAT INPUT
-========================================================== */
 
-[data-testid="stChatInput"]{
+/* =========================================
+Markdown
+========================================= */
 
-    background:transparent !important;
+[data-testid="stMarkdownContainer"] p{
 
-    border:none !important;
-
-    box-shadow:none !important;
+    line-height:1.8;
 
 }
 
-[data-baseweb="textarea"]{
 
-    border-radius:18px !important;
+/* =========================================
+Divider
+========================================= */
 
-    border:1px solid rgba(150,150,150,.25) !important;
+hr{
 
-    overflow:hidden !important;
+    border-color:#DDD4CB;
 
-    background:var(--secondary-background-color,#FFFFFF) !important;
+    margin-top:16px;
 
-}
-
-[data-baseweb="base-input"]{
-
-    background:transparent !important;
-
-    border-radius:18px !important;
+    margin-bottom:20px;
 
 }
 
-textarea{
 
-    background:transparent !important;
+/* =========================================
+Caption
+========================================= */
 
-    color:inherit !important;
+[data-testid="stCaptionContainer"]{
 
-    border:none !important;
+    color:#8B7D70;
 
-}
+    margin-top:-6px;
 
-textarea::placeholder{
-
-    color:gray !important;
-
-}
-
-/* ==========================================================
-BUTTON
-========================================================== */
-
-.stButton>button{
-
-    background:#6F4E37 !important;
-
-    color:white !important;
-
-    border:none !important;
-
-    border-radius:12px !important;
-
-    transition:.2s;
-
-    font-weight:600;
+    margin-bottom:18px;
 
 }
 
-.stButton>button:hover{
 
-    background:#5A3E2B !important;
-
-}
-
-/* ==========================================================
-POPOVER
-========================================================== */
-
-[data-testid="stPopover"] button{
-
-    border-radius:12px !important;
-
-}
-
-/* ==========================================================
-METRIC
-========================================================== */
-
-[data-testid="stMetric"]{
-
-    background:var(--secondary-background-color,#FFFFFF) !important;
-
-    border-radius:14px;
-
-    padding:12px;
-
-    border:1px solid rgba(150,150,150,.18);
-
-    box-shadow:0 3px 8px rgba(0,0,0,.05);
-
-}
-
-/* ==========================================================
-TABLE
-========================================================== */
+/* =========================================
+Table
+========================================= */
 
 table{
 
-    border-radius:12px;
+    border-radius:10px;
 
 }
 
-/* ==========================================================
-CODE
-========================================================== */
+
+/* =========================================
+Code Block
+========================================= */
 
 pre{
 
@@ -222,29 +191,10 @@ pre{
 
 }
 
-/* ==========================================================
-DIVIDER
-========================================================== */
 
-hr{
-
-    border-color:rgba(150,150,150,.18);
-
-}
-
-/* ==========================================================
-LINK ICON (Anchor Heading)
-========================================================== */
-
-[data-testid="stHeaderActionElements"]{
-
-    display:none;
-
-}
-
-/* ==========================================================
-SCROLLBAR
-========================================================== */
+/* =========================================
+Scrollbar
+========================================= */
 
 ::-webkit-scrollbar{
 
@@ -260,72 +210,7 @@ SCROLLBAR
 
 }
 
-/* ==========================================================
-DARK MODE
-========================================================== */
-
-@media (prefers-color-scheme: dark){
-
-html,
-body,
-.stApp,
-[data-testid="stAppViewContainer"],
-[data-testid="stAppScrollToBottomContainer"],
-[data-testid="stMainBlockContainer"],
-.stMain{
-
-    background:#121212 !important;
-
-    color:#F2F2F2 !important;
-
-}
-
-[data-testid="stChatMessageContent"]{
-
-    background:#1E1E1E !important;
-
-    border:1px solid #343434 !important;
-
-}
-
-[data-testid="stMetric"]{
-
-    background:#1E1E1E !important;
-
-    border:1px solid #343434 !important;
-
-}
-
-[data-baseweb="textarea"]{
-
-    background:#1E1E1E !important;
-
-    border:1px solid #444 !important;
-
-}
-
-textarea{
-
-    color:white !important;
-
-}
-
-textarea::placeholder{
-
-    color:#A0A0A0 !important;
-
-}
-
-header,
-[data-testid="stHeader"]{
-
-    background:#121212 !important;
-
-}
-
-}
-
 </style>
 """,
-        unsafe_allow_html=True,
+        unsafe_allow_html=True
     )
