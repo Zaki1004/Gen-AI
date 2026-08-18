@@ -5,12 +5,9 @@ from agents.coffee_agent import (
     run_agent
 )
 
-
 def render_chat():
 
-    # ==========================
     # CHAT HISTORY
-    # ==========================
 
     for message in st.session_state.messages:
 
@@ -29,9 +26,7 @@ def render_chat():
                 message["content"]
             )
 
-    # ==========================
     # CHAT INPUT
-    # ==========================
 
     prompt = st.chat_input(
         "Tanyakan sesuatu tentang kopi..."
@@ -41,9 +36,7 @@ def render_chat():
 
         return
 
-    # ==========================
     # USER MESSAGE
-    # ==========================
 
     st.session_state.messages.append(
 
@@ -66,11 +59,7 @@ def render_chat():
             prompt
         )
 
-    # ==========================
     # ASSISTANT
-    # ==========================
-
-
 
     with st.chat_message(
         "assistant",

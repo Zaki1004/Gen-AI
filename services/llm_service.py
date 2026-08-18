@@ -1,6 +1,12 @@
 from config.ai_client import (
-    get_groq_client
+    get_gemini_client
 )
+
+from config.ai_model import (
+    GEMINI_MODEL
+)
+
+client = get_gemini_client()
 
 SYSTEM_PROMPT = """
 Kamu adalah BaristaBot.
@@ -24,18 +30,29 @@ jawab dengan jujur dan jangan mengarang.
 
 def generate_response(messages):
 
-    client = get_groq_client()
+    contents = []
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        temperature=0.7,
-        max_tokens=1024,
-        messages=[
+    for message in messages:
+
+        contents.append(
             {
-                "role": "system",
-                "content": SYSTEM_PROMPT
+                "role": message["role"],
+                "parts": [
+                    {
+                        "text": message["content"]
+                    }
+                ]
             }
-        ] + messages
+        )
+
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=contents,
+        config={
+            "system_instruction": SYSTEM_PROMPT,
+            # "temperature": 0.1,
+            "max_output_tokens": 1024
+        }
     )
 
-    return response.choices[0].message.content
+    return response.text

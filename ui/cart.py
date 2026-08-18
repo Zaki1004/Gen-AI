@@ -23,9 +23,7 @@ def render_cart(
         f"🛒 Cart ({len(cart)})"
     ):
 
-        # ==========================
         # CART
-        # ==========================
 
         if cart:
 
@@ -89,9 +87,7 @@ Subtotal : **Rp{item['price'] * item['quantity']:,}**
                 "Tambahkan menu favorit melalui chat."
             )
 
-        # ==========================
         # PAYMENT
-        # ==========================
 
         if "payment_token" not in st.session_state:
 

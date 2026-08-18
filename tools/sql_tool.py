@@ -1,16 +1,20 @@
 from database.db_service import execute_query
 from utils.query_normalizer import normalize_question
 from config.ai_client import (
-    get_groq_client
+    get_gemini_client
+)
+
+from config.ai_model import (
+    GEMINI_MODEL
 )
 
 def get_client():
 
-    client = get_groq_client()
+    client = get_gemini_client()
 
     if not client:
         raise ValueError(
-            "GROQ_API_KEY tidak ditemukan."
+            "GEMINI_API_KEY tidak ditemukan."
         )
 
     return client
@@ -97,7 +101,6 @@ Pertanyaan:
 {question}
 """
 
-
 def clean_sql(sql):
 
     sql = sql.replace(
@@ -111,7 +114,6 @@ def clean_sql(sql):
     )
 
     return sql.strip()
-
 
 def validate_sql(sql):
 
@@ -159,7 +161,6 @@ def improve_sql(sql, question):
 
     return sql
 
-
 def generate_sql(question):
 
     question = normalize_question(
@@ -172,28 +173,24 @@ def generate_sql(question):
 
     client = get_client()
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        temperature=0,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
-    )
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=prompt,
+        config={
+            # "temperature": 0,
+            "max_output_tokens": 1024
+        }
+    )   
 
-    sql = response.choices[0].message.content
+    sql = response.text
 
     sql = improve_sql(
     sql,
-    question
-)
+    question)
 
     validate_sql(sql)
 
     return sql
-
 
 def generate_answer(
     question,
@@ -223,19 +220,16 @@ Rules:
 
     client = get_client()
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        temperature=0.3,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=prompt,
+        config={
+            # "temperature": 0.1,
+            "max_output_tokens": 1024
+        }  
     )
 
-    return response.choices[0].message.content
-
+    return response.text
 
 def ask_database(question):
 
@@ -255,4 +249,3 @@ def ask_database(question):
     )
 
     return answer
-

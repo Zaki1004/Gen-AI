@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 def init_cart():
 
     if "cart" not in st.session_state:
@@ -11,7 +10,6 @@ def init_cart():
 
         st.session_state.cart_total = 0
 
-
 def save_cart(
     cart,
     total
@@ -20,7 +18,6 @@ def save_cart(
     st.session_state.cart = cart
 
     st.session_state.cart_total = total
-
 
 def get_cart():
 
@@ -34,7 +31,6 @@ def get_cart():
             0
         )
     )
-
 
 def clear_cart():
 
@@ -99,7 +95,6 @@ def merge_cart(
         current_total +
         new_total
     )
-
 
 def remove_item(menu_name):
 

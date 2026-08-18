@@ -33,7 +33,6 @@ from services.cart_session_service import (
     clear_cart
 )
 
-
 def route_message(messages):
 
     question = (

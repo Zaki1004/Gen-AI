@@ -2,9 +2,7 @@ from langchain_text_splitters import (
     RecursiveCharacterTextSplitter
 )
 
-# ======================================
 # Chunk Configuration
-# ======================================
 
 CHUNK_SIZE = 768
 
@@ -22,10 +20,7 @@ SEPARATORS = [
 
 ]
 
-
-# ======================================
 # Create Chunks
-# ======================================
 
 def create_chunks(
     documents

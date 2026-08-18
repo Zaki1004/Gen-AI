@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import faiss
 import pickle
 import numpy as np

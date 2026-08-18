@@ -4,7 +4,7 @@
 
 ### AI-Powered Coffee Shop Assistant with LangGraph, RAG & SQL Agent
 
-CoffeeBot is an intelligent coffee shop assistant built using **LangGraph**, **LangChain**, **Retrieval-Augmented Generation (RAG)**, **FAISS**, **SQLite**, and **Groq LLM**. It helps users learn about coffee, receive menu recommendations, place orders, and simulate payments through a conversational interface.
+CoffeeBot is an intelligent coffee shop assistant built using **LangGraph**, **LangChain**, **Retrieval-Augmented Generation (RAG)**, **FAISS**, **SQLite**, and **Gemini LLM**. It helps users learn about coffee, receive menu recommendations, place orders, and simulate payments through a conversational interface.
 
 ---
 
@@ -157,7 +157,7 @@ Supported environments:
 
 ## Large Language Model
 
-- Groq API
+- Gemini API
 
 ---
 
@@ -210,7 +210,6 @@ Instead of relying solely on an LLM, CoffeeBot combines:
 
 This architecture enables CoffeeBot to produce responses that are more reliable, explainable, and scalable than a standard conversational chatbot.
 
-
 # 🏗 System Architecture
 
 CoffeeBot follows a modular architecture that separates the user interface, AI orchestration, retrieval pipeline, database operations, and business logic.
@@ -241,7 +240,7 @@ CoffeeBot follows a modular architecture that separates the user interface, AI o
 
                ─────────────────────
 
-                    Groq LLM
+                    Gemini LLM
                         │
                         ▼
                  Final Response
@@ -292,7 +291,7 @@ LangGraph Agent
       │
       ▼
 
-Groq LLM
+Gemini LLM
 
       │
 
@@ -314,7 +313,7 @@ CoffeeBot uses **LangGraph** as the central orchestration engine.
 Instead of sending every prompt directly to the LLM, the agent first analyzes the user's intent and determines which tool should be executed.
 
 ```text
-          
+
                          User Prompt
                               │
                               ▼
@@ -336,13 +335,13 @@ Instead of sending every prompt directly to the LLM, the agent first analyzes th
      └──────────────┴──────────────┘
                     │
                     ▼
-                 Groq LLM
+                 Gemini LLM
                     │
                     ▼
               Final Response
 ```
 
-The LangGraph agent acts as the decision-making layer of CoffeeBot. It analyzes the user's intent and routes the request to the appropriate tool before sending the enriched context to the Groq Large Language Model.
+The LangGraph agent acts as the decision-making layer of CoffeeBot. It analyzes the user's intent and routes the request to the appropriate tool before sending the enriched context to the Gemini Large Language Model.
 
 This architecture enables CoffeeBot to:
 
@@ -351,8 +350,7 @@ This architecture enables CoffeeBot to:
 - Process customer orders and cart operations.
 - Handle general conversations without external tools.
 
-As a result, CoffeeBot provides responses that are more accurate, contextual, and efficient than relying solely on an LLM.
----
+## As a result, CoffeeBot provides responses that are more accurate, contextual, and efficient than relying solely on an LLM.
 
 # 📚 Retrieval-Augmented Generation (RAG) Pipeline
 
@@ -425,7 +423,7 @@ Top-K Chunks
 
       ▼
 
-Groq LLM
+Gemini LLM
 
       │
 
@@ -473,7 +471,7 @@ Query Result
 
       ▼
 
-Groq LLM
+Gemini LLM
 
       │
 
@@ -647,12 +645,12 @@ CoffeeBot uses environment variables to securely store sensitive credentials.
 
 1. Create a `.env` file in the project root.
 2. Copy the contents from `.env.example`.
-3. Replace the placeholder value with your own Groq API Key.
+3. Replace the placeholder value with your own Gemini API Key.
 
 Example:
 
 ```env
-GROQ_API_KEY=<YOUR_GROQ_API_KEY>
+Gemini_API_KEY=<YOUR_Gemini_API_KEY>
 ```
 
 > **Note:** Never commit your `.env` file or expose your API keys publicly. The `.env` file is ignored by Git via `.gitignore`.
@@ -721,14 +719,14 @@ docker compose down
 
 CoffeeBot currently uses the following environment variables.
 
-| Variable | Description |
-|----------|-------------|
-| GROQ_API_KEY | API Key used to access Groq LLM |
+| Variable       | Description                       |
+| -------------- | --------------------------------- |
+| Gemini_API_KEY | API Key used to access Gemini LLM |
 
 Example
 
 ```env
-GROQ_API_KEY=YOUR_API_KEY
+Gemini_API_KEY=YOUR_API_KEY
 ```
 
 ---

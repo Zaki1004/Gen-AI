@@ -1,22 +1,22 @@
-from groq import Groq
-from dotenv import load_dotenv
-
-import streamlit as st
 import os
+from google import genai
+from dotenv import load_dotenv
 
 load_dotenv()
 
 
-@st.cache_resource
-def get_groq_client():
+def get_gemini_client():
 
     api_key = os.getenv(
-        "GROQ_API_KEY"
+        "GEMINI_API_KEY"
     )
 
     if not api_key:
-        return None
 
-    return Groq(
+        raise ValueError( 
+            "GEMINI_API_KEY tidakditemukan."
+        )
+
+    return genai.Client(
         api_key=api_key
     )

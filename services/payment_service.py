@@ -9,7 +9,6 @@ DB_PATH = (
     "coffee.db"
 )
 
-
 def pay_order(payment_token):
 
     conn = sqlite3.connect(DB_PATH)
@@ -32,7 +31,6 @@ def pay_order(payment_token):
     conn.close()
 
     return updated_rows > 0
-
 
 def get_order(payment_token):
 

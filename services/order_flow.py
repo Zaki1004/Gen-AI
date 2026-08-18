@@ -21,14 +21,11 @@ from utils.cart_formatter import (
     format_cart
 )
 
-
 def process_order(question):
 
     question = question.lower()
 
-    # =====================
     # CHECKOUT
-    # =====================
 
     if "checkout" in question:
 
@@ -52,9 +49,7 @@ def process_order(question):
             f"{order_number}"
         )
 
-    # =====================
     # TAMBAH PESANAN
-    # =====================
 
     orders = extract_order(
         question

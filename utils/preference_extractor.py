@@ -6,9 +6,7 @@ def extract_preferences(question):
 
     preferences = {}
 
-    # ======================
     # CATEGORY
-    # ======================
 
     if "kopi" in question:
         preferences["category_id"] = 1
@@ -22,9 +20,7 @@ def extract_preferences(question):
     elif "makanan berat" in question:
         preferences["category_id"] = 4
 
-    # ======================
     # SWEETNESS
-    # ======================
 
     if "sangat manis" in question:
         preferences["sweetness_level"] = "High"
@@ -38,9 +34,7 @@ def extract_preferences(question):
     elif "tidak terlalu manis" in question:
         preferences["sweetness_level"] = "Low"
 
-    # ======================
     # SERVING TYPE
-    # ======================
 
     if "dingin" in question:
         preferences["serving_type"] = "Cold"
@@ -48,9 +42,7 @@ def extract_preferences(question):
     elif "panas" in question:
         preferences["serving_type"] = "Hot"
 
-    # ======================
     # CAFFEINE
-    # ======================
 
     if "kopi kuat" in question:
         preferences["caffeine_level"] = "Very High"
@@ -70,16 +62,12 @@ def extract_preferences(question):
     elif "tanpa kafein" in question:
         preferences["caffeine_level"] = "None"
 
-    # ======================
     # DIET
-    # ======================
 
     if "diet" in question:
         preferences["low_calorie"] = True
 
-    # ======================
     # RECOMMENDED
-    # ======================
 
     recommended_keywords = [
         "rekomendasi",
@@ -92,9 +80,7 @@ def extract_preferences(question):
     if any(word in question for word in recommended_keywords):
         preferences["is_recommended"] = 1
 
-    # ======================
     # RATING
-    # ======================
 
     rating_keywords = [
         "terbaik",
@@ -105,9 +91,7 @@ def extract_preferences(question):
     if any(word in question for word in rating_keywords):
         preferences["min_rating"] = 4.7
 
-    # ======================
     # BUDGET
-    # ======================
 
     match = re.search(r'(\d+)\s*ribu', question)
 

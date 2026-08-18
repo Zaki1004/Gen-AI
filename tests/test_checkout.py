@@ -27,8 +27,3 @@ order_number = checkout(
     cart,
     total
 )
-
-print(
-    "ORDER NUMBER:",
-    order_number
-)

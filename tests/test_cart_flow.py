@@ -14,15 +14,6 @@ orders = extract_order(
     question
 )
 
-print("ORDERS:")
-print(orders)
-
 cart, total_price = build_cart(
     orders
 )
-
-print("\nCART:")
-print(cart)
-
-print("\nTOTAL:")
-print(total_price)
