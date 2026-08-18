@@ -5,13 +5,9 @@ from rag.retriever import (
 questions = [
 
     "Apa itu roasting kopi?",
-
     "Apa itu reaksi maillard?",
-
     "Apa fungsi cooling tray?",
-
     "Apa perbedaan arabika dan robusta?",
-
     "Apa itu espresso?"
 
 ]

@@ -16,20 +16,15 @@ from ui.history import (
     render_history
 )
 
-
 def render_header():
 
-    # ==========================
     # Load Data
-    # ==========================
 
     cart, total = get_cart()
 
     orders = get_recent_orders()
 
-    # ==========================
     # Header Layout
-    # ==========================
 
     left, right = st.columns(
         [7, 3],
@@ -43,7 +38,7 @@ def render_header():
         )
 
         st.caption(
-            "AI Coffee Shop Assistant"
+            "AI Coffee Shop Assistant banget"
         )
 
     with right:

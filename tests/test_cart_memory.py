@@ -24,12 +24,3 @@ add_to_cart({
     "price": 35000,
     "subtotal": 35000
 })
-
-print(get_cart())
-
-print()
-
-print(
-    "TOTAL:",
-    get_total()
-)

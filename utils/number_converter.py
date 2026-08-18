@@ -21,14 +21,9 @@ NUMBER_MAP = {
     "dua puluh": 20
 }
 
-
 def replace_text_numbers(text):
 
     text = text.lower()
-
-    # sorting penting supaya
-    # "dua belas" diproses dulu
-    # sebelum "dua"
 
     sorted_numbers = sorted(
         NUMBER_MAP.items(),

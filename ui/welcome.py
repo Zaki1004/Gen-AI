@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 def init_welcome():
 
     if "messages" not in st.session_state:

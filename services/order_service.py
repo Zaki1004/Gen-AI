@@ -13,7 +13,6 @@ DB_PATH = (
     "coffee.db"
 )
 
-
 def create_order(total_price):
 
     conn = sqlite3.connect(DB_PATH)
@@ -48,7 +47,6 @@ def create_order(total_price):
         order_id,
         payment_token
     )
-
 
 def create_order_items(
     order_id,
@@ -94,11 +92,9 @@ def create_order_items(
     conn.commit()
     conn.close()
 
-
 def generate_order_number(order_id):
 
     return f"ORD-{order_id:05d}"
-
 
 def checkout(
     cart,

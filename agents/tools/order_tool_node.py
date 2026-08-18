@@ -34,9 +34,7 @@ def order_tool_node(question):
 
     intent = detect_intent(question)
 
-    # ==========================
     # VIEW CART
-    # ==========================
 
     if intent == "view_cart":
 
@@ -47,9 +45,7 @@ def order_tool_node(question):
             total
         )
 
-    # ==========================
     # CLEAR CART
-    # ==========================
 
     if intent == "clear_cart":
 
@@ -59,9 +55,7 @@ def order_tool_node(question):
             "🗑️ Semua pesanan berhasil dihapus dari keranjang."
         )
 
-    # ==========================
     # REMOVE ITEM
-    # ==========================
 
     if intent == "remove_item":
 
@@ -114,9 +108,7 @@ def order_tool_node(question):
             total
         )
 
-    # ==========================
     # CHECKOUT
-    # ==========================
 
     if intent == "checkout":
 
@@ -138,9 +130,7 @@ def order_tool_node(question):
             f"Order Number : {result['order_number']}"
         )
 
-    # ==========================
     # ADD ITEM
-    # ==========================
 
     orders = extract_order(
         question

@@ -1,8 +1,6 @@
 import re
 
-# ==========================
 # Header Patterns
-# ==========================
 
 HEADER_PATTERNS = [
 
@@ -10,9 +8,7 @@ HEADER_PATTERNS = [
 
 ]
 
-# ==========================
 # Footer Patterns
-# ==========================
 
 FOOTER_PATTERNS = [
 
@@ -26,9 +22,7 @@ FOOTER_PATTERNS = [
 
 ]
 
-# ==========================
 # Page Number
-# ==========================
 
 PAGE_PATTERN = (
 
@@ -36,9 +30,7 @@ PAGE_PATTERN = (
 
 )
 
-# ==========================
 # Table of Contents
-# ==========================
 
 TOC_PATTERN = (
 
@@ -46,9 +38,7 @@ TOC_PATTERN = (
 
 )
 
-# ==========================
 # OCR Noise
-# ==========================
 
 OCR_PATTERN = (
 
@@ -56,15 +46,11 @@ OCR_PATTERN = (
 
 )
 
-# ==========================
 # Clean Text
-# ==========================
 
 def clean_document_text(text):
 
-    # ----------------------
     # Remove Header
-    # ----------------------
 
     for pattern in HEADER_PATTERNS:
 
@@ -75,9 +61,7 @@ def clean_document_text(text):
             flags=re.IGNORECASE
         )
 
-    # ----------------------
     # Remove Footer
-    # ----------------------
 
     for pattern in FOOTER_PATTERNS:
 
@@ -88,9 +72,7 @@ def clean_document_text(text):
             flags=re.IGNORECASE
         )
 
-    # ----------------------
     # Remove Page Number
-    # ----------------------
 
     text = re.sub(
         PAGE_PATTERN,
@@ -99,9 +81,7 @@ def clean_document_text(text):
         flags=re.IGNORECASE
     )
 
-    # ----------------------
     # Remove Table of Contents
-    # ----------------------
 
     text = re.sub(
         TOC_PATTERN,
@@ -110,9 +90,7 @@ def clean_document_text(text):
         flags=re.IGNORECASE
     )
 
-    # ----------------------
     # Remove OCR Noise
-    # ----------------------
 
     text = re.sub(
         OCR_PATTERN,
@@ -120,9 +98,7 @@ def clean_document_text(text):
         text
     )
 
-    # ----------------------
     # Normalize Spaces
-    # ----------------------
 
     text = re.sub(
         r"\n{3,}",
@@ -138,9 +114,7 @@ def clean_document_text(text):
 
     return text.strip()
 
-# ==========================
 # Remove Empty Pages
-# ==========================
 
 def remove_empty_pages(
     documents
