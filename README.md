@@ -4,7 +4,7 @@
 
 ### AI-Powered Coffee Shop Assistant with LangGraph, RAG & SQL Agent
 
-CoffeeBot is an intelligent coffee shop assistant built using **LangGraph**, **LangChain**, **Retrieval-Augmented Generation (RAG)**, **FAISS**, **SQLite**, and **Gemini LLM**. It helps users learn about coffee, receive menu recommendations, place orders, and simulate payments through a conversational interface.
+CoffeeBot is an intelligent coffee shop assistant built using **LangGraph**, **LangChain**, **Retrieval-Augmented Generation (RAG)**, **FAISS**, **SQLite**, and **Groq LLM**. It helps users learn about coffee, receive menu recommendations, place orders, and simulate payments through a conversational interface.
 
 ---
 
@@ -157,7 +157,7 @@ Supported environments:
 
 ## Large Language Model
 
-- Gemini API
+- Groq API
 
 ---
 
@@ -240,7 +240,7 @@ CoffeeBot follows a modular architecture that separates the user interface, AI o
 
                ─────────────────────
 
-                    Gemini LLM
+                    Groq LLM
                         │
                         ▼
                  Final Response
@@ -291,7 +291,7 @@ LangGraph Agent
       │
       ▼
 
-Gemini LLM
+Groq LLM
 
       │
 
@@ -335,13 +335,13 @@ Instead of sending every prompt directly to the LLM, the agent first analyzes th
      └──────────────┴──────────────┘
                     │
                     ▼
-                 Gemini LLM
+                 Groq LLM
                     │
                     ▼
               Final Response
 ```
 
-The LangGraph agent acts as the decision-making layer of CoffeeBot. It analyzes the user's intent and routes the request to the appropriate tool before sending the enriched context to the Gemini Large Language Model.
+The LangGraph agent acts as the decision-making layer of CoffeeBot. It analyzes the user's intent and routes the request to the appropriate tool before sending the enriched context to the Groq Large Language Model.
 
 This architecture enables CoffeeBot to:
 
@@ -423,7 +423,7 @@ Top-K Chunks
 
       ▼
 
-Gemini LLM
+Groq LLM
 
       │
 
@@ -471,7 +471,7 @@ Query Result
 
       ▼
 
-Gemini LLM
+Groq LLM
 
       │
 
@@ -645,12 +645,12 @@ CoffeeBot uses environment variables to securely store sensitive credentials.
 
 1. Create a `.env` file in the project root.
 2. Copy the contents from `.env.example`.
-3. Replace the placeholder value with your own Gemini API Key.
+3. Replace the placeholder value with your own Groq API Key.
 
 Example:
 
 ```env
-Gemini_API_KEY=<YOUR_Gemini_API_KEY>
+Groq_API_KEY=<YOUR_Groq_API_KEY>
 ```
 
 > **Note:** Never commit your `.env` file or expose your API keys publicly. The `.env` file is ignored by Git via `.gitignore`.
@@ -721,12 +721,12 @@ CoffeeBot currently uses the following environment variables.
 
 | Variable       | Description                       |
 | -------------- | --------------------------------- |
-| Gemini_API_KEY | API Key used to access Gemini LLM |
+| Groq_API_KEY | API Key used to access Groq LLM |
 
 Example
 
 ```env
-Gemini_API_KEY=YOUR_API_KEY
+Groq_API_KEY=YOUR_API_KEY
 ```
 
 ---

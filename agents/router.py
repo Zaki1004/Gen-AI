@@ -29,23 +29,6 @@ def router_node(
         question
     )
 
-    print(
-        "\nQUESTION:",
-        question
-    )
-
-    print(
-        "ORDERS:",
-        orders
-    )
-
-    print(
-        "IS ORDER:",
-        is_order_request(
-            question
-        )
-    )
-
     if (
         (
             is_order_request(question)
@@ -63,10 +46,6 @@ def router_node(
         ]
     ):
 
-        print(
-            "ROUTER -> ORDER"
-        )
-
         state["tool"] = (
             "order"
         )
@@ -83,10 +62,6 @@ def router_node(
         keyword in question
         for keyword in recommendation_keywords
     ):
-
-        print(
-            "ROUTER -> RECOMMENDATION"
-        )
 
         state["tool"] = (
             "recommendation"
@@ -107,19 +82,11 @@ def router_node(
         for keyword in sql_keywords
     ):
 
-        print(
-            "ROUTER -> SQL"
-        )
-
         state["tool"] = (
             "sql"
         )
 
         return state
-
-    print(
-        "ROUTER -> RAG"
-    )
 
     state["tool"] = (
         "rag"

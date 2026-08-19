@@ -3,11 +3,11 @@ from rag.retriever import (
 )
 
 from config.ai_client import (
-    get_gemini_client
+    get_groq_client
 )
 
 from config.ai_model import (
-    GEMINI_MODEL
+    GROQ_MODEL
 )
 
 RAG_SYSTEM_PROMPT = """
@@ -151,7 +151,7 @@ def ask_rag(
     question
 ):
 
-    client = get_gemini_client()
+    client = get_groq_client()
 
     retrieved_docs = retrieve_context(
         question
@@ -192,15 +192,26 @@ Question:
 {question}
 """
 
-    response = client.models.generate_content(
-        model=GEMINI_MODEL,
-        contents=prompt,
-        config={
-            "system_instruction": RAG_SYSTEM_PROMPT,
-            # "temperature": 0,
-            "max_output_tokens": 1024
-        }
+    response = client.chat.completions.create(
+        model=GROQ_MODEL,
+        temperature=0,
+        max_tokens=1024,
+        messages=[
+            {
+                "role": "system",
+                "content": RAG_SYSTEM_PROMPT
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
     )
 
-    return response.text
+    return (
+    response
+    .choices[0]
+    .message
+    .content
+)
     

@@ -39,12 +39,6 @@ def route_message(messages):
         messages[-1]["content"]
     )
 
-    print("QUESTION:", question)
-    print(
-        "IS ORDER:",
-        is_order_request(question)
-    )
-
     intent = detect_intent(
     question
     )
