@@ -6,8 +6,6 @@ from rag.rag_service import (
 def rag_tool_node(
     question
 ):
-
-    print("RAG TOOL CALLED")
     
     return ask_rag(
         question

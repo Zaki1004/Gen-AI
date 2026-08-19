@@ -1,20 +1,20 @@
 from database.db_service import execute_query
 from utils.query_normalizer import normalize_question
 from config.ai_client import (
-    get_gemini_client
+    get_groq_client
 )
 
 from config.ai_model import (
-    GEMINI_MODEL
+    GROQ_MODEL
 )
 
 def get_client():
 
-    client = get_gemini_client()
+    client = get_groq_client()
 
     if not client:
         raise ValueError(
-            "GEMINI_API_KEY tidak ditemukan."
+            "GROQ_API_KEY tidak ditemukan."
         )
 
     return client
@@ -173,16 +173,19 @@ def generate_sql(question):
 
     client = get_client()
 
-    response = client.models.generate_content(
-        model=GEMINI_MODEL,
-        contents=prompt,
-        config={
-            # "temperature": 0,
-            "max_output_tokens": 1024
-        }
-    )   
+    response = client.chat.completions.create(
+        model=GROQ_MODEL,
+        temperature=0,
+        max_tokens=1024,
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    )
 
-    sql = response.text
+    sql = response.choices[0].message.content
 
     sql = improve_sql(
     sql,
@@ -220,28 +223,25 @@ Rules:
 
     client = get_client()
 
-    response = client.models.generate_content(
-        model=GEMINI_MODEL,
-        contents=prompt,
-        config={
-            # "temperature": 0.1,
-            "max_output_tokens": 1024
-        }  
+    response = client.chat.completions.create(
+        model=GROQ_MODEL,
+        temperature=0.3,
+        max_tokens=1024,
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
     )
 
-    return response.text
+    return response.choices[0].message.content
 
 def ask_database(question):
 
     sql = generate_sql(question)
 
-    print("\nSQL:")
-    print(sql)
-
     result = execute_query(sql)
-
-    print("\nRESULT:")
-    print(result)
 
     answer = generate_answer(
         question,

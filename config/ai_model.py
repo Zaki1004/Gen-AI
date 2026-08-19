@@ -1,1 +1,1 @@
-GEMINI_MODEL = "gemini-3.5-flash-lite"
+GROQ_MODEL = "openai/gpt-oss-120b"
